@@ -1,26 +1,39 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Welcome from './Welcome';
+import Name from './Name';
+import Age from './Age';
+import Hobbies from './Hobbies';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      hobbies: ['books', 'games', 'routing']
+    }
+  }
+  render() {
+    return (
+      <div className="App">
+        <Router>
+          <div>
+            <Link to='/'>Home</Link>
+            <Link to='/name'>Name</Link>
+            <Link to='/age'>Age</Link>
+            <Link to='/hobbies'>Hobbies</Link>
+          </div>
+          <Switch>
+            <Route exact path='/' render={() => <Welcome welcome='Hello World!' />} />
+            <Route path='/name' render={() => <Name name='JH' />} />
+            <Route path='/age' render={() => <Age age='25' />} />
+            <Route path='/hobbies' render={() => <Hobbies hobbies={this.state.hobbies} />} />
+          </Switch>
+        </Router>
+      </div>
+    );
+  }
 }
 
 export default App;
