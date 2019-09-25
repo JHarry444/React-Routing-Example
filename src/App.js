@@ -25,10 +25,11 @@ class App extends React.Component {
             <Link to='/hobbies'>Hobbies</Link>
           </div>
           <Switch>
-            <Route exact path='/' render={() => <Welcome welcome='Hello World!' />} />
-            <Route path='/name' render={() => <Name name='JH' />} />
-            <Route path='/age' render={() => <Age age='25' />} />
-            <Route path='/hobbies' render={() => <Hobbies hobbies={this.state.hobbies} />} />
+            <Route exact path='/' render={(props) => <Welcome {...props} welcome='Hello World!' />} />
+            <Route path='/name' render={(props) => <Name {...props} name='JH' />} />
+            <Route path='/age/:age' render={(props) => <Age {...props}/>} />
+            <Route path='/hobbies' render={(props) => <Hobbies {...props} hobbies={this.state.hobbies} />} />
+            <Route path='*' render={() => <p>YOU DONE GOOFED</p>}/>
           </Switch>
         </Router>
       </div>
